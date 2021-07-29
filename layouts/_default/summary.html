@@ -1,6 +1,6 @@
 {{- $params := .Params | merge .Site.Params.page -}}
 
-<article class="single summary" itemscope itemtype="http://schema.org/Article">
+<article class="single summary" itemscope itemtype="https://schema.org/Article">
     {{- /* Featured image */ -}}
     {{- $image := $params.featuredimagepreview | default $params.featuredimage -}}
     {{- with .Resources.GetMatch "featured-image" -}}
@@ -21,7 +21,7 @@
     <h1 class="single-title" itemprop="name headline">
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     </h1>
-
+    {{- if .Draft }}<div class="entry-isdraft"><sup>[draft]</sup></div>{{- end }}
     {{- /* Meta */ -}}
     <div class="post-meta">
         {{- $author := $params.author | default .Site.Author.name | default (T "author") -}}
